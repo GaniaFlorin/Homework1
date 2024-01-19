@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('unnamed.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.question-container {
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Adăugăm o nouă regulă pentru a evidenția întrebările la hover */
+.options li:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.options li {
+    margin: 10px 0;
+}
+
+.next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Stilizare pentru butonul Next la hover */
+.next-btn:hover {
+    background-color: #555;
+    color: #fff;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+}
