@@ -1,0 +1,93 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <!-- Custom styles -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            padding-top: 56px; /* Adjust based on the navbar height */
+            text-align: center; /* Center-align text */
+            background-image: url('/static/main_page_bg.jpg'); /* Update path as needed */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .description-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        }
+
+        form {
+            max-width: 400px; /* Set maximum width for the form */
+            margin: auto; /* Center the form horizontally */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <!-- Left side with logo -->
+        <a class="navbar-brand" href="/">
+            <img src="/static/logo.jpg" width="60" height="60" class="d-inline-block" alt="Logo">
+            Mario Runner
+        </a>
+    
+        <!-- Responsive navigation button for smaller screens -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if logged_in %}
+                <!-- Right side with Logout link -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            {% else %}
+                <!-- Right side with Sign Up and Sign In links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signin">Sign In</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Content goes here -->
+    <div class="container mt-5">
+        <div class="description-box">
+            <h1 class="mb-3">Welcome to Mario Runner</h1>
+            <p>Help Mario avoid all the obstacles!</p>
+            <div class="mt-4">
+                {% if logged_in %}
+                    <a href="/game" class="btn btn-primary btn-lg">Play</a>
+                {% else %}
+                    <a href="/signup" class="btn btn-primary btn-lg">Play</a>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!-- templates/signin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Mario Runner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+
+    <!-- Custom styles -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            padding-top: 56px; /* Adjust based on the navbar height */
+            text-align: center; /* Center-align text */
+            background-image: url('/static/main_page_bg.jpg'); /* Update path as needed */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .description-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            max-width: 450px;
+            margin: auto; /* Center the box horizontally */
+        }
+
+        form {
+            text-align: left; /* Align form elements to the left */
+        }
+
+        /* Style for the toggle password button */
+        .btn-toggle-password {
+            background-color: white; /* White background */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <!-- Left side with logo -->
+        <a class="navbar-brand" href="/">
+            <img src="/static/logo.jpg" width="60" height="60" class="d-inline-block" alt="Logo">
+            Mario Runner
+        </a>
+    
+        <!-- Responsive navigation button for smaller screens -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if logged_in %}
+                <!-- Right side with Logout link -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            {% else %}
+                <!-- Right side with Sign Up and Sign In links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signin">Sign In</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Content goes here -->
+    <div class="container mt-5">
+        <!-- Sign-in form -->
+        <div class="description-box">
+            <h1 class="text-left mb-4">Sign In</h1>
+            <form action="/signin" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" autocomplete="off" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-toggle-password" type="button" id="togglePassword">
+                                <i class="fas fa-eye-slash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+            </form>
+
+            <!-- Don't have an account? Sign Up -->
+            <p class="mt-3">Don't have an account? <a href="/signup">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery script for password visibility toggle -->
+    <script>
+        $(document).ready(function () {
+            $("#togglePassword").click(function () {
+                var passwordField = $("#password");
+                var passwordFieldType = passwordField.attr('type');
+                if (passwordFieldType == 'password') {
+                    passwordField.attr('type', 'text');
+                    $("#togglePassword i").removeClass('fa-eye-slash').addClass('fa-eye');
+                } else {
+                    passwordField.attr('type', 'password');
+                    $("#togglePassword i").removeClass('fa-eye').addClass('fa-eye-slash');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
